@@ -12,55 +12,29 @@ Element providing solution to no problem in particular.
 @status alpha
 @homepage http://robdodson.github.io/sauce-element
 -->
-<polymer-element name="sauce-element" attributes="notitle">
+<polymer-element name="sauce-element" attributes="foo">
 
   <template>
 
     <link rel="stylesheet" href="sauce-element.css" />
-
-    <content></content>
+    <h1>{{foo}}</h1>
 
   </template>
 
   <script>
 
-    Polymer('sauce-element', {
+    Polymer({
       /**
-       * The `noevent` event is not actually fired from here,
-       * we document it as an example of documenting events.
+       * The `foo` attribute will display the value you give it
        *
-       * @event noevent
-       */
-
-      /**
-       * The `notitle` attribute does not yet have a purpose.
-       *
-       * @attribute notitle
+       * @attribute foo
        * @type string
        */
-      notitle: '',
-
-      /**
-       * The `aProp` is a property that does something cool.
-       *
-       * @property aProp
-       * @type bool
-       */
-      aProp: false,
+      foo: '',
 
       ready: function() {
-      },
-
-      /**
-       * The `task` method does no work at this time.
-       *
-       * @method task
-       * @return {Object} Returns undefined.
-       * @param {String} dummy Serves no purpose today.
-       */
-      task: function(dummy) {
+        this.foo = 'Hello World';
       }
-
     });
 
   </script>
