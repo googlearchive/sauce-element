@@ -1,0 +1,19 @@
+{
+  "name": "sauce-element",
+  "keywords": "seed, polymer, web-components",
+  "main": "sauce-element.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#~0.3.1"
+  },
+  "homepage": "https://github.com/robdodson/sauce-element",
+  "_release": "481759f341",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "481759f341e4461ea914c89c3a16022663ce5d9d"
+  },
+  "_source": "git://github.com/robdodson/sauce-element.git",
+  "_target": "master",
+  "_originalSource": "robdodson/sauce-element",
+  "_direct": true
+}
