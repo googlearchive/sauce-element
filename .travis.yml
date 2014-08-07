@@ -6,7 +6,6 @@ before_script:
 - npm install -g bower
 - npm install -g serve
 - bower install
-- serve
 script: "./run-tests.sh"
 env:
   global:
