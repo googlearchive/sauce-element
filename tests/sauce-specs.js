@@ -65,9 +65,9 @@ describe('tutorial (' + desired.browserName + ')', function() {
 
     it("should get home page", function(done) {
         browser
-            .get("http://127.0.0.1:9999/foo.html")
+            .get("http://google.com")
             .title()
-            .should.become("Foo")
+            .should.become("Google")
             .nodeify(done);
     });
 
