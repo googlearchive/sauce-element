@@ -65,9 +65,9 @@ describe('tutorial (' + desired.browserName + ')', function() {
 
     it("should get home page", function(done) {
         browser
-            .get("http://localhost:3000/sauce-element/tests/foo.html")
+            .get("http://localhost:3000/foo.html")
             .title()
-            .should.become("Foo bar baz")
+            .should.become("Foo")
             .nodeify(done);
     });
 

@@ -6,7 +6,6 @@ before_script:
 - npm install -g mocha
 - npm install -g bower
 - npm install -g serve
-- bower install
 script: "./run-tests.sh"
 env:
   global:

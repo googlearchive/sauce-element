@@ -1,5 +1,6 @@
 echo '!!! running tests !!!'
-cd ..
+# cd ..
 serve &
-cd sauce-element
+# cd sauce-element
+# bower install
 grunt
