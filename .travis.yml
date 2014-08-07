@@ -1,8 +1,16 @@
 language: node_js
 node_js:
-  - '0.10'
+- '0.10'
 before_script:
-  - npm install -g mocha
-  - npm install -g bower
-  - bower install
-script: mocha tests
+- npm install -g mocha
+- npm install -g bower
+- npm install -g serve
+- bower install
+- serve
+script: "./run-tests.sh"
+env:
+  global:
+  - secure: h7F7wvZlxXTNLMx3L1Mmfl8uCH68TeTNgRBoXVsAD8BZKoUjjxXB528L1FUVpEbp1OcjQlCsDoBRX7wL/pf3xXT0l0RypMOPf9pU6lX0ONQggs8DL46HBKqCPb7+5mHXlyO0SVxNwN4wUjEA+Wx1wM1AZbHI381lArQotrQDq/s=
+  - secure: DPRWf4VSlaQbCLY+LXi8KkE/LXUCUZDSQHuY0dMcE1Z6iGfd9c86nNfojq0LCJ9h9UENSoiGE3BX8tLfaeiwERZWVv4FdC1tq1ML8J1yZoXJwOoP5vD2vWB4E+/SeegJIhkWbz+KUhDtzVPX+LaRfW7SUGLtXmK8KMVAOaoR0m0=
+addons:
+  sauce_connect: true
