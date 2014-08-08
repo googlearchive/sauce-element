@@ -1,22 +1,11 @@
 module.exports = function (grunt) {
   var browsers = [{
-    browserName: 'firefox',
-    version: '19',
-    platform: 'XP'
-  }, {
-    browserName: 'googlechrome',
-    platform: 'XP'
-  }, {
-    browserName: 'googlechrome',
-    platform: 'linux'
-  }, {
     browserName: 'internet explorer',
-    platform: 'WIN8',
-    version: '10'
+    version: '11',
+    platform: 'Windows 8.1'
   }, {
-    browserName: 'internet explorer',
-    platform: 'VISTA',
-    version: '9'
+    browserName: 'chrome',
+    platform: 'OS X 10.9'
   }];
 
   grunt.initConfig({
@@ -24,7 +13,7 @@ module.exports = function (grunt) {
     connect: {
       server: {
         options: {
-          base: '',
+          base: '.tmp',
           port: 9999
         }
       }
@@ -33,7 +22,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           urls: [
-            'http://127.0.0.1:9999/runner.html'
+            'http://127.0.0.1:9999/sauce-element/runner.html'
           ],
           browsers: browsers,
           build: process.env.TRAVIS_JOB_ID,
@@ -45,11 +34,49 @@ module.exports = function (grunt) {
         }
       }
     },
-    watch: {}
+    clean: {
+      tmp: ['.tmp']
+    },
+    copy: {
+      dist: {
+        files: [{
+          expand: true,
+          dot: true,
+          dest: '.tmp/sauce-element',
+          src: [
+            '**/*',
+            '!.tmp'
+          ]
+        }]
+      }
+    },
+    'bower-install-simple': {
+      all: {
+        options: {
+          cwd: '.tmp/sauce-element'
+        }
+      }
+    }
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-bower-install-simple');
   grunt.loadNpmTasks('grunt-saucelabs');
 
-  grunt.registerTask('default', ['connect', 'saucelabs-mocha']);
+  grunt.registerTask('default', [
+    'clean',
+    'copy',
+    'bower-install-simple',
+    'connect',
+    'saucelabs-mocha'
+  ]);
+
+  grunt.registerTask('serve', [
+    'clean',
+    'copy',
+    'bower-install-simple',
+    'connect:server:keepalive'
+  ]);
 };
