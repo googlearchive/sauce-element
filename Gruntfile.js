@@ -5,7 +5,26 @@ module.exports = function (grunt) {
     platform: 'Windows 8.1'
   }, {
     browserName: 'chrome',
+    platform: 'Windows 8.1'
+  }, {
+    browserName: 'firefox',
+    platform: 'Windows 8.1',
+    version: '31'
+  }, {
+    browserName: 'chrome',
     platform: 'OS X 10.9'
+  }, {
+    browserName: 'safari',
+    platform: 'OS X 10.9',
+    version: '7'
+  }, {
+    browserName: 'iphone',
+    platform: 'OS X 10.9',
+    version: '7.1'
+  }, {
+    browserName: 'android',
+    platform: 'Linux',
+    version: '4.4'
   }];
 
   grunt.initConfig({
