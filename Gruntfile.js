@@ -22,7 +22,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           urls: [
-            'http://127.0.0.1:9999/sauce-element/runner.html'
+            'http://127.0.0.1:9999/sauce-element/test/runner.html'
           ],
           browsers: browsers,
           build: process.env.TRAVIS_JOB_ID,
