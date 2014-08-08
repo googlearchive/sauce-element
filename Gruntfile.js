@@ -22,7 +22,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           urls: [
-            'http://127.0.0.1:9999/sauce-element/test/runner.html'
+            'http://127.0.0.1:9999/sauce-element/tests/runner.html'
           ],
           browsers: browsers,
           build: process.env.TRAVIS_JOB_ID,
@@ -38,7 +38,7 @@ module.exports = function (grunt) {
       tmp: ['.tmp']
     },
     copy: {
-      dist: {
+      all: {
         files: [{
           expand: true,
           dot: true,
@@ -46,6 +46,18 @@ module.exports = function (grunt) {
           src: [
             '**/*',
             '!.tmp'
+          ]
+        }]
+      },
+      server: {
+        files: [{
+          expand: true,
+          dot: true,
+          dest: '.tmp/sauce-element',
+          src: [
+            '**/*',
+            '!**/.tmp/**/*',
+            '!**/node_modules/**/*'
           ]
         }]
       }
@@ -56,18 +68,28 @@ module.exports = function (grunt) {
           cwd: '.tmp/sauce-element'
         }
       }
+    },
+    watch: {
+      all: {
+        options: {
+          spawn: false
+        },
+        files: ['**/*', '!**/.tmp/**', '!**/node_modules/**'],
+        tasks: ['copy:server']
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-bower-install-simple');
   grunt.loadNpmTasks('grunt-saucelabs');
 
   grunt.registerTask('default', [
     'clean',
-    'copy',
+    'copy:all',
     'bower-install-simple',
     'connect',
     'saucelabs-mocha'
@@ -75,8 +97,9 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', [
     'clean',
-    'copy',
+    'copy:all',
     'bower-install-simple',
-    'connect:server:keepalive'
+    'connect',
+    'watch'
   ]);
 };
