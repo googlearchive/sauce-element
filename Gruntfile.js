@@ -5,7 +5,8 @@ module.exports = function (grunt) {
     platform: 'Windows 8.1'
   }, {
     browserName: 'chrome',
-    platform: 'Windows 8.1'
+    platform: 'Windows 8.1',
+    version: '36'
   }, {
     browserName: 'firefox',
     platform: 'Windows 8.1',
