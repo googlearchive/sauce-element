@@ -1,0 +1,41 @@
+<link rel="import" href="../../polymer-test-tools/tools.html">
+<script src="../../polymer-test-tools/mocha-htmltest.js"></script>
+
+<script>
+  mocha.setup({ui: 'tdd', slow: 1000, timeout: 5000, htmlbase: ''});
+
+  // Below is a set of sample element test suites.
+  // Replace these with your own suites of tests.
+
+  htmlSuite('sauce-element', function() {
+    htmlTest('spec/sauce-element-basic.html');
+  });
+
+  // End sample test suites
+
+  window.onload = function() {
+    var runner = mocha.run();
+
+    var failedTests = [];
+    runner.on('end', function() {
+      window.mochaResults = runner.stats;
+      window.mochaResults.reports = failedTests;
+    });
+
+    runner.on('fail', logFailure);
+
+    function logFailure(test, err) {
+
+      var flattenTitles = function(test) {
+        var titles = [];
+        while (test.parent.title) {
+          titles.push(test.parent.title);
+          test = test.parent;
+        }
+        return titles.reverse();
+      };
+
+      failedTests.push({name: test.title, result: false, message: err.message, stack: err.stack, titles: flattenTitles(test) });
+    };
+  };
+</script>

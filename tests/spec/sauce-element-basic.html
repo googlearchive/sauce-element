@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>sauce-element</title>
+
+  <!-- Do I need to pull these in again? -->
+  <script src="../../../platform/platform.js"></script>
+  <link rel="import" href="../../../polymer-test-tools/tools.html">
+  <script src="../../../polymer-test-tools/htmltest.js"></script>
+
+  <!-- Step 1: import the element to test -->
+  <link rel="import" href="../../sauce-element.html">
+
+</head>
+<body>
+
+  <sauce-element></sauce-element>
+
+  <script>
+
+    document.addEventListener('polymer-ready', function() {
+      // Test a property
+      var myEl = document.querySelector('sauce-element');
+      assert.equal(myEl.author, 'Dimitri Glazkov');
+
+      // Test a method
+      var hello = myEl.sayHello();
+      assert.equal(hello, 'sauce-element says, Hello World!');
+      var greetings = myEl.sayHello('greetings Earthlings');
+      assert.equal(greetings, 'sauce-element says, greetings Earthlings');
+
+      // Test an event
+      myEl.addEventListener('sauce-element-lasers-success', function(event) {
+        assert.equal(event.detail.sound, 'Pew pew pew!');
+        // IMPORTANT:
+        // Make sure to call done() at the end of every test suite!
+        done();
+      });
+      myEl.fireLasers();
+    });
+
+  </script>
+
+</body>
+</html>
