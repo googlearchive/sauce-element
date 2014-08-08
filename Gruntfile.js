@@ -45,19 +45,8 @@ module.exports = function (grunt) {
           dest: '.tmp/sauce-element',
           src: [
             '**/*',
-            '!.tmp'
-          ]
-        }]
-      },
-      server: {
-        files: [{
-          expand: true,
-          dot: true,
-          dest: '.tmp/sauce-element',
-          src: [
-            '**/*',
-            '!**/.tmp/**/*',
-            '!**/node_modules/**/*'
+            '!.tmp/**/*',
+            '!node_modules/**/*'
           ]
         }]
       }
@@ -68,22 +57,12 @@ module.exports = function (grunt) {
           cwd: '.tmp/sauce-element'
         }
       }
-    },
-    watch: {
-      all: {
-        options: {
-          spawn: false
-        },
-        files: ['**/*', '!**/.tmp/**', '!**/node_modules/**'],
-        tasks: ['copy:server']
-      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-bower-install-simple');
   grunt.loadNpmTasks('grunt-saucelabs');
 
@@ -97,9 +76,8 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', [
     'clean',
-    'copy:all',
+    'copy',
     'bower-install-simple',
-    'connect',
-    'watch'
+    'connect:server:keepalive'
   ]);
 };
