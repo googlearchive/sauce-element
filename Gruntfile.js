@@ -29,16 +29,15 @@ module.exports = function (grunt) {
         }
       }
     },
-    'saucelabs-jasmine': {
+    'saucelabs-mocha': {
       all: {
         options: {
           urls: [
-            'http://127.0.0.1:9999/SpecRunner.html',
-            'http://127.0.0.1:9999/SpecRunnerDos.html'
+            'http://127.0.0.1:9999/runner.html'
           ],
           browsers: browsers,
           build: process.env.TRAVIS_JOB_ID,
-          testname: 'jasmine tests',
+          testname: 'mocha tests',
           throttled: 3,
           sauceConfig: {
             'video-upload-on-pass': false
@@ -52,5 +51,5 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-saucelabs');
 
-  grunt.registerTask('default', ['connect', 'saucelabs-jasmine']);
+  grunt.registerTask('default', ['connect', 'saucelabs-mocha']);
 };
