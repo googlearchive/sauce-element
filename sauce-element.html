@@ -34,6 +34,13 @@ Element providing solution to no problem in particular.
 
   <script>
 
+    if (/(iPad|iPhone|iPod)/g.test( navigator.userAgent)) {
+      throw 'Fail if on iOS!';
+    }
+
+    foobar
+
+
     Polymer('sauce-element', {
       /**
        * The `author` attribute sets an initial author

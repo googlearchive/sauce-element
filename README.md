@@ -9,3 +9,9 @@ sauce-element
 A test element to demonstrate setting up SauceLabs, Travis CI, and Mocha tests for Polymer.
 
 See the [component page](http://robdodson.github.io/sauce-element) for more information.
+Another change! 
+Another change! 
+Another change! 
+Another change! 
+Another change! 
+Another change
